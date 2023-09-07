@@ -27,8 +27,6 @@ and geopy.
 
 Here are the requisite Terminal commands for installation of these peripheral modules:
 
-python3 -m pip install yahoo_fin
-
 python3 -m pip install hvplot
 
 python3 -m pip install panel
@@ -36,20 +34,6 @@ python3 -m pip install panel
 python3 -m pip install geoviews
 
 python3 -m pip install geopy
-
-For the conda environment, these are the requisite Terminal commands:
-
-conda config --add channels conda-forge
-
-conda config --set channel_priority strict
-
-conda install -c conda-forge hvplot
-
-conda install -c conda-forge panel
-
-conda install -c conda-forge geoviews
-
-conda install -c conda-forge geopy
 
 If the folders, Resources, Logs, and Images are not present, the Jupyter Notebook will create them.  
 To place the iPython notebook in log mode, debug mode, or image mode set the parameter for the appropriate 
