@@ -22,10 +22,12 @@ If the computer has Anaconda, Jupyter Notebook, and a recent version of Python, 
 already has the following dependencies installed: datetime, io, json, matplotlib, numpy, pandas, pathlib, 
 os, pandas, requests, requests_html, and scipy.
 
-In addition to those modules, the Jupyter Notebook needs the following to execute: hvplot, panel, geoviews, 
+In addition to those modules, the Jupyter Notebook needs the following to execute: holoviews, hvplot, panel, geoviews, 
 and geopy.
 
 Here are the requisite Terminal commands for installation of these peripheral modules:
+
+python3 -m pip install holoviews
 
 python3 -m pip install hvplot
 
