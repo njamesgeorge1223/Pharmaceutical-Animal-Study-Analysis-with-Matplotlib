@@ -13,3 +13,9 @@ Unfortunately, upon closer examination, there are serious anomalies in data coll
 ![PymaceuticalsFigure731NumberofMiceVsDrugTreatmentRegimen](https://github.com/njgeorge000158/pandas-challenges/assets/137228821/c696c1db-0cd8-430a-a5da-62b192f4b02f)
 
 Is this situation a product of poor administration or a deliberate attempt to manipulate results in favor of certain unmerited treatments?  Ostensibly, Ramicane is the most promising drug with Capomulin a close second, and neither Ceftamin nor Infubinol have any discernable effect on decreasing tumor volume.  In truth, this study should be invalidated due to asymmetrical data collection, suspicious inconsistencies, and insufficient sample spaces.  Therefore, I recommend another study of these treatments where each mouse uniformly provides the same quantity of data points for analysis, the number of mice per trial increases, at least, by an order of magnitude, the weight of each mouse in the study is approximately the same, and clinical trial managers review data closely immediately after collection.  Once information based on a valid and accurate study is forthcoming and available to management, the company can then use drug cost to determine each treatment’s level of effectiveness per dollar spent and examine the impact of varying the dosage of Capomulin, or any other treatment for SCC, based on a subject’s weight.
+
+----
+
+## Copyright
+
+N. James George © 2023. All Rights Reserved.
