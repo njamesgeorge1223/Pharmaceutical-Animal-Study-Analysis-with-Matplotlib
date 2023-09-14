@@ -28,6 +28,7 @@
  #      DisplayTwoPieChartsSideBySide
  #      DisplayStackedBarChartFromDataFrame
  #      DisplayHistogramFromSeries
+ #      ReturnPlotFromXYSeries
  #
  #
  #  Date            Description                             Programmer
@@ -36,6 +37,10 @@
  #  09/03/2023      Added DisplayStackedBarChartFromDataFrame
  #                                                          N. James George
  #  09/06/2023      Added DisplayHistogramFromSeries        N. James George
+ #  09/11/2023      Set figure size to (9.708, 6) for all plots
+ #                                                          N. James George
+ #  09/12/2023      Set font sizes to 20, 16, 16, 14, 14    N. James George
+ #  09/13/2023      Added ReturnPlotFromXYSeries            N. James George
  #
  #******************************************************************************************/
 
@@ -104,11 +109,15 @@ CONSTANT_LOCAL_FILE_NAME \
  #          axisTickLabelRotationFloatParameter
  #                          This parameter is the rotation of the x-axis 
  #                          tick labels.
+ #  String
+ #          xLabelStringParameter
+ #                          This parameter is the x-axis label.
  #
  #
  #  Date                Description                                 Programmer
  #  ---------------     ------------------------------------        ------------------
  #  8/18/2023           Initial Development                         N. James George
+ #  9/06/2023           Added xLabelStringParameter                 N. James George
  #
  #******************************************************************************************/
 
@@ -118,15 +127,17 @@ def DisplayPandasBarChartFromSeries \
          captionStringParameter, 
          yLabelStringParameter,
          edgeColorStringParameter \
-            = 'blue',
+            = 'black',
          lineWidthFloatParameter \
-            = 1.0,
+            = 1.5,
          alphaFloatParameter \
             = 1.0,
          widthFloatParameter \
             = 0.5,
          axisTickLabelRotationFloatParameter \
-            = 80.0):
+            = 80.0,
+         xLabelStringParameter \
+            = None):
     
     try:
         
@@ -150,32 +161,36 @@ def DisplayPandasBarChartFromSeries \
                      = alphaFloatParameter,
                  width \
                      = widthFloatParameter, 
-                 xlabel \
-                     = inputSeries.name, 
-                 ylabel \
-                     = yLabelStringParameter, 
                  rot \
                      = axisTickLabelRotationFloatParameter,
                  legend \
-                     = False)
-
+                     = False,
+                 figsize \
+                     = (9.708, 6))
+        
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
-                 pad = 20)
+                 pad \
+                     = 20)
 
+        if xLabelStringParameter == None:
+            
+            xLabelStringParameter \
+                = inputSeries \
+                    .name
+        
         plt \
             .xlabel \
-                (inputSeries \
-                     .name,
+                (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12,
+                            16,
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -186,18 +201,27 @@ def DisplayPandasBarChartFromSeries \
                 (yLabelStringParameter,
                  fontdict \
                     = {'fontsize': 
-                            12,
+                            16,
                        'fontstyle': 
                             'normal'},
                  labelpad \
                      = 10)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
        
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
+    
         plt \
             .grid \
                 (axis \
                     = "y")
         
-    
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
@@ -274,9 +298,9 @@ def DisplayMatplotlibBarChartFromSeries \
          captionStringParameter, 
          yLabelStringParameter,
          edgeColorStringParameter \
-            = 'blue',
+            = 'black',
          lineWidthFloatParameter \
-            = 1.0,
+            = 1.5,
          alphaFloatParameter \
             = 1.0,
          widthFloatParameter \
@@ -290,24 +314,34 @@ def DisplayMatplotlibBarChartFromSeries \
         inputSeries \
             = inputSeriesParameter.copy()
         
+        plt \
+            .figure \
+                (figsize \
+                     = (9.708, 6))
         
         plt \
             .bar \
                 (inputSeries.keys(),
                  inputSeries,
-                 align = 'center',
-                 color = barColorsListParameter,
-                 edgecolor = edgeColorStringParameter,
-                 linewidth = lineWidthFloatParameter,
-                 alpha = alphaFloatParameter,
-                 width = widthFloatParameter)
+                 align \
+                     = 'center',
+                 color \
+                     = barColorsListParameter,
+                 edgecolor \
+                     = edgeColorStringParameter,
+                 linewidth \
+                     = lineWidthFloatParameter,
+                 alpha \
+                     = alphaFloatParameter,
+                 width \
+                     = widthFloatParameter)
         
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
@@ -319,26 +353,34 @@ def DisplayMatplotlibBarChartFromSeries \
                      .name,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
                     = 10)
+        
         plt \
             .ylabel \
                 (yLabelStringParameter,
                  fontdict \
                     = {'fontsize': 
-                            12, 
+                            16, 
                        'fontstyle': 
                             'normal'},
                  labelpad \
                     = 10)
-
+        
         plt \
             .xticks \
                 (rotation \
-                     = axisTickLabelRotationFloatParameter) 
+                     = axisTickLabelRotationFloatParameter,
+                 fontsize \
+                     = 14)
+        
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
 
         plt \
             .grid \
@@ -424,49 +466,50 @@ def DisplayPandasPieChartFromSeries \
         inputSeries \
             = inputSeriesParameter.copy()
         
-        
         inputSeries \
             .rename \
                 (None, 
                  inplace \
                      = True)
         
-        
         inputSeries \
             .plot \
             .pie \
                 (colors \
                      = colorsListParameter, 
-             explode \
-                 = explodeTupleParameter, 
-             shadow \
-                 = True, 
-             startangle \
-                 = startAngleFloatParameter, 
-             autopct \
-                 = autoPercentStringParameter,
-             legend \
-                 = False,
-             figsize \
-                = (6, 9))
+                 explode \
+                     = explodeTupleParameter, 
+                 shadow \
+                     = True, 
+                 startangle \
+                     = startAngleFloatParameter, 
+                 autopct \
+                     = autoPercentStringParameter,
+                 pctdistance \
+                     = 0.75,
+                 legend \
+                     = False,
+                 figsize \
+                    = (9.708, 6),
+                 textprops \
+                     = {'fontsize':
+                           14})
 
-        
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
-                    = 5)        
-        
+                    = 5)
+
         
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
-        
         
         plt \
             .show()
@@ -547,7 +590,10 @@ def DisplayMatplotlibPieChartFromSeries \
                  inplace \
                      = True)
         
-        plt.figure(figsize=(6, 9))
+        plt \
+            .figure \
+                (figsize \
+                     = (9.708, 6))
         
         plt \
             .pie \
@@ -559,29 +605,31 @@ def DisplayMatplotlibPieChartFromSeries \
                  explode \
                      = explodeTupleParameter, 
                  shadow \
-                     = True, 
+                     = True,
+                 pctdistance \
+                     = 0.75,
                  startangle \
                      = startAngleFloatParameter,
                  autopct \
-                     = autoPercentStringParameter)
-        
+                     = autoPercentStringParameter,
+                 textprops \
+                     = {'fontsize':
+                           14})
         
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
                     = 5)   
         
-        
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
-        
         
         plt \
             .show()
@@ -655,10 +703,11 @@ def DisplayMatplotlibBoxPlotFromSeriesList \
         inputSeriesList \
             = inputSeriesListParameter.copy()
         
-        
         fig1, ax \
             = plt \
-                .subplots()
+                .subplots \
+                    (figsize \
+                         = (9.708, 6))
 
         ax \
             .boxplot \
@@ -677,18 +726,18 @@ def DisplayMatplotlibBoxPlotFromSeriesList \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
-                     = 15)
+                     = 20)
         
         ax \
             .set_xlabel \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -699,7 +748,7 @@ def DisplayMatplotlibBoxPlotFromSeriesList \
                 (yLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -717,7 +766,9 @@ def DisplayMatplotlibBoxPlotFromSeriesList \
         ax \
             .set_xticks \
                 (ticksIndexList, 
-                 xTicksLabelListParameter)
+                 xTicksLabelListParameter,
+                 fontsize \
+                    = 14)
         
         plt \
             .grid \
@@ -806,7 +857,12 @@ def DisplayMatplotlibLineChartFromXYSeries \
        
         ySeries \
             = ySeriesParameter.copy()
-
+            
+        plt \
+            .figure \
+                (figsize \
+                     = (9.708, 6))
+    
         plt \
             .plot \
                 (xSeries,
@@ -818,31 +874,37 @@ def DisplayMatplotlibLineChartFromXYSeries \
                  fillstyle \
                      = 'full',
                  linewidth \
-                     = 2.0,
+                     = 3.0,
                  marker \
                      = 'o',
+                 markerfacecolor \
+                     = 'red',
                  markeredgecolor \
                      = 'black',
+                 markersize \
+                     = 10,
+                 markeredgewidth \
+                     = 1.0,
                  linestyle \
                      = lineTypeStringParameter)
-    
+
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
-                    = 15)
+                    = 20)
 
         plt \
             .xlabel \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12,
+                            16,
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -853,11 +915,21 @@ def DisplayMatplotlibLineChartFromXYSeries \
                 (yLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12,
+                            16,
                         'fontstyle': 
                             'normal'},
                  labelpad \
                      = 10)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
 
         plt \
             .grid()
@@ -955,11 +1027,10 @@ def DisplayRegressionLine \
                  color \
                      = 'red',
                  linewidth \
-                     = 3,
+                     = 3.0,
                  alpha \
                      = 1.0)
 
-    
         equationLabelStringVariable \
             = function \
                 .ReturnEquationAsString \
@@ -970,10 +1041,11 @@ def DisplayRegressionLine \
              (xCoordinateFloatParameter,
               yCoordinateFloatParameter),
              fontsize \
-                 = 15, 
+                 = 16,
+             fontweight \
+                 = 'bold',
              color \
                  = 'blue')
-    
     
         rSquaredFloatVariable \
             = function \
@@ -985,7 +1057,6 @@ def DisplayRegressionLine \
         rValueFloatVariable \
             = math.sqrt(rSquaredFloatVariable)
 
-    
         log_subroutine \
             .PrintAndLogWriteText \
                 ('r-value:     {:.4f}'.format(rValueFloatVariable))
@@ -1072,7 +1143,11 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
         ySeries \
             = ySeriesParameter.copy()
     
-    
+        plt \
+            .figure \
+                (figsize \
+                     = (9.708, 6))
+        
         plt \
             .scatter \
                 (xSeries, 
@@ -1080,11 +1155,11 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
                  marker \
                      = 'o',
                  s \
-                     = 40,
+                     = 80,
                  color 
                      = 'lime', 
                  linewidth \
-                     = 1.0,
+                     = 1.5,
                  edgecolors \
                      = 'black',
                  alpha \
@@ -1095,7 +1170,7 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
                 (captionStringParameter, 
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
                  pad \
@@ -1107,7 +1182,7 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
                      .name,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -1119,15 +1194,24 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
                      .name,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
                     = 10)
         
         plt \
-            .grid()
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
         
+        plt \
+            .grid()
         
         if optionalDegreeIntegerParameter == 1:
             
@@ -1145,7 +1229,6 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
                  optionalDegreeIntegerParameter,
                  optionalTextXCoordinateFloatParameter,
                  optionalTextYCoordinateFloatParameter)
-        
         
         log_subroutine \
             .SavePlotImage \
@@ -1222,6 +1305,14 @@ def DisplayMatplotlibScatterPlotFromXYSeries \
  #          legendYOffsetFloatParameter
  #                          This parameter is the y-axis offset for the figure's 
  #                          legend.
+ #  Boolean
+ #          firstYLabelOffsetBooleanParameter
+ #                          This parameter indicates whether there will be a 
+ #                          offset for the first subplot y-axis label.
+ #  Float
+ #          firstYLabelOffsetFloatParameter
+ #                          This parameter is the y-axis offset for the first
+ #                          subplot's y-axis label.
  #
  #
  #  Date                Description                                 Programmer
@@ -1251,6 +1342,10 @@ def DisplayStackedSubplots \
          legendXOffsetFloatParameter \
             = 0.0,
          legendYOffsetFloatParameter \
+            = 0.0,
+         firstYLabelOffsetBooleanParameter \
+            = False,
+         firstYLabelOffsetFloatParameter \
             = 0.0):
     
     try:
@@ -1260,20 +1355,23 @@ def DisplayStackedSubplots \
                 .DataFrame \
                     (frameDictionaryParameter)
         
-    
         numberOfSubPlotsIntegerVariable \
-            = len(inputDataFrame.keys())
+            = len \
+                (inputDataFrame \
+                     .keys())
     
-  
         fig, axs \
             = plt \
                 .subplots \
-                    (numberOfSubPlotsIntegerVariable)
+                    (numberOfSubPlotsIntegerVariable,
+                     figsize \
+                        = (9.708, 6))
    
         fig \
             .suptitle \
                 (captionStringParameter, 
-                 fontsize = 14)
+                 fontsize \
+                     = 20)
       
         if figureXLabelStringParameter != None:
             
@@ -1281,7 +1379,7 @@ def DisplayStackedSubplots \
                 .supxlabel \
                     (figureXLabelStringParameter,
                      fontsize \
-                         = 12,
+                         = 16,
                      y \
                          = figureXLabelYPositionFloatParameter)
        
@@ -1291,7 +1389,7 @@ def DisplayStackedSubplots \
                 .supylabel \
                     (figureYLabelStringParameter,
                      fontsize \
-                         = 12,
+                         = 16,
                      x \
                          = figureYLabelXPositionFloatParameter)
     
@@ -1301,7 +1399,6 @@ def DisplayStackedSubplots \
         legendLineNamesList \
             = []
     
-            
         for index, subPlot in enumerate(axs):
         
             lineSubPlot, \
@@ -1311,7 +1408,6 @@ def DisplayStackedSubplots \
                          color \
                              = colorListParameter[index])
             
-            
             legendLinePlotList \
                 .append \
                     (lineSubPlot)
@@ -1320,60 +1416,104 @@ def DisplayStackedSubplots \
                 .append \
                     (inputDataFrame.iloc[:,index].name)
             
-            
             subPlot \
                 .grid()
             
             if index != (numberOfSubPlotsIntegerVariable - 1):
-                
+
                 subPlot \
                     .set_xticklabels \
                         (labels = [])
-                
+
             else:
-                subPlot \
-                    .tick_params \
-                        (axis = 'x', 
-                         rotation = 90.0)
-                
+
                 if xLabelStringParameter == None:
-                
+
                     subPlot \
                         .set_xlabel \
-                            ('')
-                    
+                            ('',
+                             fontsize \
+                                = 16)
                 else:
                     
                     subPlot \
                         .set_xlabel \
-                            (xLabelStringParameter)
-            
+                            (xLabelStringParameter,
+                                fontsize \
+                                = 16)
+
+
             if yLabelStringParameter == None:
-                
-                subPlot \
-                    .set_ylabel \
-                        (inputDataFrame.iloc[:,index].name)
-            
-            else:
+               
+                if firstYLabelOffsetBooleanParameter == True \
+                    and index == 0:
                     
+                    subPlot \
+                        .set_ylabel \
+                            (inputDataFrame \
+                                 .iloc \
+                                     [:,index] \
+                                         .name,
+                             fontsize \
+                                = 16,
+                             labelpad \
+                                = firstYLabelOffsetFloatParameter)
+                    
+                else:
+                    
+                    subPlot \
+                        .set_ylabel \
+                            (inputDataFrame \
+                                 .iloc \
+                                     [:,index] \
+                                         .name,
+                             fontsize \
+                                = 16,
+                             labelpad \
+                                = 10)
+
+            else:
+
                 subPlot \
                     .set_ylabel \
-                        (yLabelStringParameter)
+                        (yLabelStringParameter,
+                         fontsize \
+                            = 16,
+                         labelpad \
+                            = 0)
                 
-                
+            subPlot \
+                .tick_params \
+                    (axis \
+                        = 'x', 
+                     rotation \
+                        = 90.0,
+                     labelsize \
+                        = 14)
+            
+            subPlot \
+                .tick_params \
+                    (axis \
+                        = 'y', 
+                     rotation \
+                        = 0.0,
+                     labelsize \
+                        = 14)
+                        
         if legendFlagBooleanParameter == True:
-        
+
             fig \
                 .legend \
                     (legendLinePlotList, 
                      legendLineNamesList, 
                      loc \
                          = 'center right',
+                     fontsize \
+                         = '14',
                      bbox_to_anchor \
                          = (legendXOffsetFloatParameter, 
                             legendYOffsetFloatParameter))
-        
-        
+
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
@@ -1432,50 +1572,77 @@ def DisplaySummaryStatisticsBoxPlot \
     
     try:
         
+        boxPlotDataFrame \
+            = boxPlotDataFrameParameter.copy()
+        
         boxPlotAxes \
-            = boxPlotDataFrameParameter.boxplot \
-                (by \
-                     ='Industry', \
-                 column \
-                     = [columnNameStringParameter], 
-                 fontsize \
-                     = 12,
-                 rot \
-                     = 0.0,
-                 grid \
-                     = True,
-                 figsize \
-                     = (9,6),
-                 vert \
-                     = False,
-                 widths \
-                     = 0.7,
-                 meanline \
-                     = True,
-                 showmeans \
-                     = True)
-
-    
+            = boxPlotDataFrame \
+                .boxplot \
+                    (by \
+                         ='Industry', \
+                     column \
+                         = [columnNameStringParameter], 
+                     fontsize \
+                         = 14,
+                     rot \
+                         = 0.0,
+                     grid \
+                         = True,
+                     figsize \
+                         = (9.708, 6),
+                     vert \
+                         = False,
+                     widths \
+                         = 0.7,
+                     meanline \
+                         = True,
+                     showmeans \
+                         = True)
+        
         plt \
             .suptitle \
                 (captionStringParameter, 
                  fontsize \
-                     = 14, 
+                     = 20, 
                  y \
                     = 1.01)
+        
+        plt \
+            .title \
+                (columnNameStringParameter, 
+                 fontsize \
+                     = 16)
     
         plt \
-            .xlabel('')
+            .xlabel \
+                ('',
+                 fontsize \
+                    = 16)
     
         plt \
-            .ylabel('')
+            .ylabel \
+                ('',
+                 fontsize \
+                    = 16)
     
         boxPlotAxes \
             .get_figure() \
             .gca() \
-            .set_xlabel('')
-    
-    
+            .set_xlabel \
+                ('',
+                 fontsize \
+                    = 16)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
+        
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
@@ -1557,14 +1724,15 @@ def DisplayOneLineGraphFromSeries \
                  fontsize \
                      = 12,
                  rot \
-                    = 90.0)
-
+                    = 90.0,
+                 figsize \
+                    = (9.708, 6))
 
         plt \
             .suptitle \
                 (captionStringParameter, 
                  fontsize \
-                    = 14, 
+                    = 20, 
                  y \
                     = 1.0)
     
@@ -1573,7 +1741,7 @@ def DisplayOneLineGraphFromSeries \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -1584,12 +1752,21 @@ def DisplayOneLineGraphFromSeries \
                 (yLabelStringParameter, \
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
                     = 0)
         
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
         
         log_subroutine \
             .SavePlotImage \
@@ -1666,7 +1843,6 @@ def DisplayLinesGraph \
                 .DataFrame \
                     (frameDictionaryParameter)
     
-
         lineDataFrame \
             .plot \
                 (kind \
@@ -1676,27 +1852,28 @@ def DisplayLinesGraph \
                  legend \
                      = True, 
                  fontsize \
-                     = 12,
+                     = 14,
                  rot \
                      = 90.0,
                  color \
-                     = colorListParameter)
-
+                     = colorListParameter,
+                 figsize \
+                    = (9.708, 6))
+    
         plt \
             .suptitle \
                 (captionStringParameter, 
                  fontsize \
-                    = 14, 
+                    = 20, 
                  y \
                     = 0.99)
     
-
         plt \
             .xlabel \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -1707,12 +1884,21 @@ def DisplayLinesGraph \
                 (ylabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12, 
+                            16, 
                         'fontstyle': 
                             'normal'},
                  labelpad \
                     = 0)
         
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
         
         log_subroutine \
             .SavePlotImage \
@@ -1853,7 +2039,7 @@ def DisplayTwoByTwoHistograms \
                 'darkblue', 
                 'firebrick'],
          figSizeTupleOfIntegersParameter \
-             = (9,6)):
+             = (9.708, 6)):
 
     try:
 
@@ -1877,6 +2063,7 @@ def DisplayTwoByTwoHistograms \
             = 0
 
         for row in range(2):
+            
             for column in range(2):
     
                 inputDataFrame \
@@ -1897,35 +2084,48 @@ def DisplayTwoByTwoHistograms \
                 axs[row, column] \
                     .set_title \
                         (inputDataFrame.keys() \
-                             [index])
+                             [index],
+                         fontsize \
+                            = 14)
+                
+                axs[row, column] \
+                    .tick_params \
+                        (axis \
+                             = 'x', 
+                         labelsize \
+                             = 12)
+                
+                axs[row, column] \
+                    .tick_params \
+                        (axis \
+                             = 'y', 
+                         labelsize \
+                             = 12)
                 
                 index \
                     += 1
-
 
         fig \
             .suptitle \
                 (figureTitleStringParameter,
                  fontsize \
-                     = 14)
+                     = 20)
 
         fig \
             .supxlabel \
                 (figureXLabelStringParameter,
                  fontsize \
-                     = 12)
+                     = 16)
 
         fig \
             .supylabel \
                 (figureYLabelStringParameter,
                  fontsize \
-                     = 12)
+                     = 16)
 
-        
         log_subroutine \
             .SavePlotImage \
                 (figureTitleStringParameter)
-
         
         plt.show()
 
@@ -2083,32 +2283,33 @@ def DisplayLinearRegressionLine \
         linearRegressionSeries \
             = (xSeries * slope) + intercept
         
-        
         plt \
             .plot \
                 (xSeries,
                  linearRegressionSeries,
                  color \
-                     = 'red')
-        
+                     = 'red',
+                 linewidth \
+                     = 3.0,
+                 alpha \
+                     = 1.0)
         
         linearEquationStringVariable \
             = 'y = ' + str( round( slope, 4 ) ) + 'x + ' + str( round( intercept, 4 ) )
-        
         
         plt \
             .annotate \
                 (linearEquationStringVariable,
                  (xCoordinateFloatParameter, yCoordinateFloatParameter),
                   fontsize \
-                     = 15, 
+                     = 16,
+                  fontweight \
+                     = 'bold',
                   color \
                      = 'blue')   
         
-        
         rSquaredFloatVariable \
             = rvalue*rvalue
-        
         
         log_subroutine \
             .PrintAndLogWriteText \
@@ -2117,7 +2318,6 @@ def DisplayLinearRegressionLine \
         log_subroutine \
             .PrintAndLogWriteText \
                 ('r-squared:   {:.4f}'.format(rSquaredFloatVariable))
-        
         
     except:
         
@@ -2181,7 +2381,9 @@ def DisplayTwoPieChartsSideBySide \
          startAngleFloatParameter \
             = 45.0,
          autoPercentStringParameter \
-            = '%1.1f%%'):
+            = '%1.1f%%',
+         supTitleYOffsetFloatParameter \
+            = 0.82):
 
     try:
         
@@ -2195,16 +2397,16 @@ def DisplayTwoPieChartsSideBySide \
                 .subplots \
                     (1, 2,
                      figsize \
-                        = (10, 8))
-
+                        = (9.708, 6))
+        
+        
         fig \
             .suptitle \
                 (captionStringParameter, 
                  y \
-                     = 0.75, 
+                     = supTitleYOffsetFloatParameter, 
                  fontsize \
                      = 20)
-    
 
         for columnIndex in range(2):
     
@@ -2227,9 +2429,11 @@ def DisplayTwoPieChartsSideBySide \
                         = autoPercentStringParameter,
                      legend \
                         = False,
-                    labeldistance \
+                     labeldistance \
                         = 1.2,
-                    ylabel \
+                     pctdistance \
+                        = 0.75,
+                     ylabel \
                         = '')
         
             axs \
@@ -2238,8 +2442,8 @@ def DisplayTwoPieChartsSideBySide \
                         (inputDataFrame \
                              .iloc \
                                  [:, columnIndex].name, 
-                         fontsize=14)
-                
+                         fontsize \
+                             = 16)
 
         plt \
             .subplots_adjust \
@@ -2247,7 +2451,6 @@ def DisplayTwoPieChartsSideBySide \
                      = 1.1, 
                  hspace \
                      = None)
-         
         
         log_subroutine \
             .SavePlotImage \
@@ -2328,10 +2531,10 @@ def DisplayStackedBarChartFromDataFrame \
          yLabelStringParameter \
              = '',
          barColorsListParameter \
-             = ['red', 
+             = ['green', 
                 'blue',
-                'green',
-                'purple'],
+                'purple',
+                'red'],
          edgeColorStringParameter \
             = 'black',
          lineWidthFloatParameter \
@@ -2368,7 +2571,9 @@ def DisplayStackedBarChartFromDataFrame \
                  rot \
                      = axisTickLabelRotationFloatParameter,
                  legend \
-                     = True)
+                     = True,
+                 figsize \
+                    = (9.708, 6))
         
         plt \
             .legend \
@@ -2381,17 +2586,18 @@ def DisplayStackedBarChartFromDataFrame \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
-                 pad = 20)
+                 pad \
+                     = 20)
 
         plt \
             .xlabel \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12,
+                            16,
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -2402,18 +2608,27 @@ def DisplayStackedBarChartFromDataFrame \
                 (yLabelStringParameter,
                  fontdict \
                     = {'fontsize': 
-                            12,
+                            16,
                        'fontstyle': 
                             'normal'},
                  labelpad \
                      = 10)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
        
         plt \
             .grid \
                 (axis \
                     = "y")
         
-    
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
@@ -2505,7 +2720,6 @@ def DisplayHistogramFromSeries \
         inputSeries \
             = inputSeriesParameter.copy()
     
-    
         inputSeries \
             .plot \
             .hist \
@@ -2520,25 +2734,27 @@ def DisplayHistogramFromSeries \
                  edgecolor \
                      = edgeColorStringParameter, 
                  legend \
-                     = False)
-
+                     = False,
+                 figsize \
+                    = (9.708, 6))
 
         plt \
             .title \
                 (captionStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            14, 
+                            20, 
                         'fontstyle': 
                             'normal'},
-                 pad = 20)
-
+                 pad \
+                     = 20)
+        
         plt \
             .xlabel \
                 (xLabelStringParameter,
                  fontdict \
                      = {'fontsize': 
-                            12,
+                            16,
                         'fontstyle': 
                             'normal'},
                  labelpad \
@@ -2549,18 +2765,27 @@ def DisplayHistogramFromSeries \
                 (yLabelStringParameter,
                  fontdict \
                     = {'fontsize': 
-                            12,
+                            16,
                        'fontstyle': 
                             'normal'},
                  labelpad \
                      = 10)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
        
         plt \
             .grid \
                 (axis \
                     = 'x')
         
-    
         log_subroutine \
             .SavePlotImage \
                 (captionStringParameter)
@@ -2578,8 +2803,171 @@ def DisplayHistogramFromSeries \
                  + f'was unable to plot a histogram from a Series.')
 
 
-# In[ ]:
+# In[22]:
 
 
+#*******************************************************************************************
+ #
+ #  Subroutine Name:  ReturnPlotFromXYSeries
+ #
+ #  Subroutine Description:
+ #      This subroutine plot two series and any peaks that are passed to it.
+ #
+ #
+ #  Subroutine Parameters:
+ #
+ #  Type    Name            Description
+ #  -----   -------------   ----------------------------------------------
+ #  Series
+ #          xSeriesParameter
+ #                          This parameter is the Series used as x-axis 
+ #                          values.
+ #  Series
+ #          ySeriesParameter
+ #                          This parameter is the Series used as y-axis 
+ #                          values.
+ #  String
+ #          captionStringParameter
+ #                          This parameter is the chart title.
+ #  String
+ #          xLabelStringParameter
+ #                          This parameter is the labe for the x-axis.
+ #  String
+ #          yLabelStringParameter
+ #                          This parameter is the labe for the y-axis.
+ #  String
+ #          colorStringListParameter
+ #                          This parameter is the list of colors for the line 
+ #                          and peak markers, and peak labels.
+ #  Numpy Array
+ #          peaksNumpyArrayParameter
+ #                          This parameter is the array of peak indexes for the plot.
+ #
+ #
+ #  Date                Description                                 Programmer
+ #  ---------------     ------------------------------------        ------------------
+ #  9/13/2023           Initial Development                         N. James George
+ #
+ #******************************************************************************************/
 
+def ReturnPlotFromXYSeries \
+    (xSeriesParameter,
+     ySeriesParameter,
+     captionStringParameter,
+     xLabelStringParameter,
+     yLabelStringParameter,
+     colorStringListParameter,
+     peaksNumpyArrayParameter \
+        = []):
+    
+    try:
+        
+        xSeries \
+            = xSeriesParameter.copy()
+       
+        ySeries \
+            = ySeriesParameter.copy()
+
+        plt \
+            .figure \
+                (figsize \
+                    = (9.708, 6))
+        
+        plt \
+            .plot \
+                (xSeries,
+                 ySeries,
+                 alpha \
+                    = 1.0,
+                 color \
+                    = colorStringListParameter[0])
+
+        if len(peaksNumpyArrayParameter) > 0:
+
+            plt \
+                .plot \
+                    (xSeries[peaksNumpyArrayParameter], 
+                     ySeries[peaksNumpyArrayParameter], 
+                     'x', 
+                      markersize \
+                         = 15, 
+                      color \
+                         = colorStringListParameter[1])
+
+            for i, j in zip(xSeries[peaksNumpyArrayParameter], ySeries[peaksNumpyArrayParameter]):
+
+                plt \
+                    .annotate \
+                        (i, 
+                         xy \
+                             = (i, j), 
+                         size \
+                             = 12, 
+                         color \
+                             = colorStringListParameter[2])
+
+        plt \
+            .title \
+                (captionStringParameter,
+                 fontdict \
+                     = {'fontsize': 
+                            20, 
+                        'fontstyle': 
+                            'normal'},
+                 pad \
+                    = 20)
+
+        plt \
+            .xlabel \
+                (xLabelStringParameter,
+                 fontdict \
+                     = {'fontsize': 
+                            16,
+                        'fontstyle': 
+                            'normal'},
+                 labelpad \
+                    = 10)
+
+        plt \
+            .ylabel \
+                (yLabelStringParameter,
+                 fontdict \
+                     = {'fontsize': 
+                            16,
+                        'fontstyle': 
+                            'normal'},
+                 labelpad \
+                     = 10)
+        
+        plt \
+            .xticks \
+                (fontsize \
+                     = 14)
+       
+        plt \
+            .yticks \
+                (fontsize \
+                     = 14)
+
+        plt \
+            .grid()
+        
+    
+        log_subroutine \
+            .SavePlotImage \
+                (captionStringParameter)
+
+        plt \
+            .show()
+        
+    except:
+        
+        log_subroutine \
+            .PrintAndLogWriteText \
+                (f'The function, ReturnPlotFromXYSeries, '
+                 + f'in source file, {CONSTANT_LOCAL_FILE_NAME}, '
+                 + f'was unable to return a plot from XY Series.')
+        
+        return \
+            None
 
