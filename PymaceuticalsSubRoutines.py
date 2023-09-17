@@ -62,7 +62,9 @@ CONSTANT_LOCAL_FILE_NAME \
 
 def DisplayTumorVolumeStatistics \
         (regimenListParameter,
-         tumorVolumeSeriesListParameter):
+         tumorVolumeSeriesListParameter,
+         sectionNameStringParameter,
+         typeStringParameter):
     
     try:
     
@@ -74,8 +76,11 @@ def DisplayTumorVolumeStatistics \
                         (tumorVolumeSeriesListParameter[ index ])
             
             captionStringVariable \
-                = f'Table 4.{index+1}: ' \
-                  + f'Tumor Volume Statistics for {regimen}'
+                = 'Table ' \
+                  + sectionNameStringParameter \
+                  + f'.{index+1}: ' \
+                  + typeStringParameter \
+                  + f' Statistics for {regimen}'
             
             display \
                 (function \
