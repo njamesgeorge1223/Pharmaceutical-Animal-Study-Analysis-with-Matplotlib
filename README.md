@@ -6,10 +6,9 @@
 
 ----
 
-<img width="1108" alt="Screenshot 2023-09-16 at 2 38 27 PM" src="https://github.com/njgeorge000158/Pharmaceutical-Animal-Study-Analysis-with-Matplotlib/assets/137228821/4e54ea6c-0c49-4229-a278-41fb849b697a">
-
 Over the course of 45 days, this study analyzes the effects of a placebo and nine drug treatment regimens on the tumor development of 248 mice suffering from a commonly occurring form of skin cancer, squamous cell carcinoma (SCC).  From the initial results, the most promising treatments include Ceftamin, Infubinol, Ramicane, and this company’s drug of interest, Capomulin.  The study’s ultimate purpose is to compare the performance of Capomulin against the other drug candidates.
 
+<img width="1108" alt="Screenshot 2023-09-16 at 2 38 27 PM" src="https://github.com/njgeorge000158/Pharmaceutical-Animal-Study-Analysis-with-Matplotlib/assets/137228821/4e54ea6c-0c49-4229-a278-41fb849b697a">
 <img width="1105" alt="Screenshot 2023-09-16 at 2 39 25 PM" src="https://github.com/njgeorge000158/Pharmaceutical-Animal-Study-Analysis-with-Matplotlib/assets/137228821/eb461ac5-dc55-4841-b9ae-f126ba885842">
 <img width="1105" alt="Screenshot 2023-09-16 at 2 44 40 PM" src="https://github.com/njgeorge000158/Pharmaceutical-Animal-Study-Analysis-with-Matplotlib/assets/137228821/b1320a9c-2722-43d1-bc29-812048ecf06b">
 
