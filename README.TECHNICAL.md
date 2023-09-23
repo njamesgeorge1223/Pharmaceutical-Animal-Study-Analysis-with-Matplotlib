@@ -22,7 +22,7 @@ If the computer has Anaconda, Jupyter Notebook, and a recent version of Python, 
 already has the following dependencies installed: datetime, io, json, matplotlib, numpy, pandas, pathlib, 
 os, pandas, requests, requests_html, and scipy.
 
-In addition to those modules, the Jupyter Notebook needs the following to execute: holoviews, hvplot, panel, geoviews, geopy, aspose-words.
+In addition to those modules, the Jupyter Notebook needs the following to execute: holoviews, hvplot, panel, geoviews, geopy, aspose-words, dataframe-image.
 
 Here are the requisite Terminal commands for installation of these peripheral modules:
 
@@ -37,6 +37,8 @@ python3 -m pip install geoviews
 python3 -m pip install geopy
 
 python3 -m pip install aspose-words
+
+python3 -m pip install dataframe-image
 
 If the folders, Resources, Logs, and Images are not present, the Jupyter Notebook will create them.  
 To place the iPython notebook in log mode, debug mode, or image mode set the parameter for the appropriate 
