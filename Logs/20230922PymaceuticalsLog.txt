@@ -1,0 +1,282 @@
+
+Timepoint: 09/22/2023 20:16:47
+Program execution begins...
+
+
+
+Timepoint: 09/22/2023 20:16:48
+[1mThe number of unique mouse IDs in the complete medical study DataFrame is 249.[0m
+
+
+Timepoint: 09/22/2023 20:16:49
+[1mThe updated number of unique mouse IDs in the complete medical study DataFrame is 248.[0m
+
+
+Timepoint: 09/22/2023 20:16:54
+True
+
+
+Timepoint: 09/22/2023 20:17:06
+[1mThe range of data points per mouse is 1-10.[0m
+
+
+Timepoint: 09/22/2023 20:17:08
+[1mThere should be 2,500 data points in this animal study.[0m
+
+
+Timepoint: 09/22/2023 20:17:08
+[1mThere are 1,880 data points in this animal study.[0m
+
+
+Timepoint: 09/22/2023 20:17:08
+[1mThis animal study is missing 620 data points or 24.8% of the expected total.[0m
+
+
+Timepoint: 09/22/2023 20:17:08
+r-value:     0.7669
+
+
+Timepoint: 09/22/2023 20:17:08
+r-squared:   0.5881
+
+
+
+Timepoint: 09/22/2023 20:17:09
+r-value:     0.0081
+
+
+Timepoint: 09/22/2023 20:17:09
+r-squared:   0.0001
+
+
+
+Timepoint: 09/22/2023 20:17:09
+r-value:     -0.0681
+
+
+Timepoint: 09/22/2023 20:17:09
+r-squared:   0.0046
+
+
+
+Timepoint: 09/22/2023 20:17:10
+r-value:     -0.0055
+
+
+Timepoint: 09/22/2023 20:17:10
+r-squared:   0.0000
+
+
+
+Timepoint: 09/22/2023 20:17:10
+r-value:     -0.1309
+
+
+Timepoint: 09/22/2023 20:17:10
+r-squared:   0.0171
+
+
+
+Timepoint: 09/22/2023 20:17:11
+r-value:     -0.1195
+
+
+Timepoint: 09/22/2023 20:17:11
+r-squared:   0.0143
+
+
+
+Timepoint: 09/22/2023 20:17:11
+r-value:     -0.0030
+
+
+Timepoint: 09/22/2023 20:17:11
+r-squared:   0.0000
+
+
+
+Timepoint: 09/22/2023 20:17:12
+r-value:     0.6917
+
+
+Timepoint: 09/22/2023 20:17:12
+r-squared:   0.4784
+
+
+
+Timepoint: 09/22/2023 20:17:12
+r-value:     0.0623
+
+
+Timepoint: 09/22/2023 20:17:12
+r-squared:   0.0039
+
+
+
+Timepoint: 09/22/2023 20:17:13
+r-value:     -0.3136
+
+
+Timepoint: 09/22/2023 20:17:13
+r-squared:   0.0983
+
+
+
+Timepoint: 09/22/2023 20:17:13
+r-value:     0.7669
+
+
+Timepoint: 09/22/2023 20:17:13
+r-squared:   0.5881
+
+
+
+Timepoint: 09/22/2023 20:17:13
+r-value:     0.6917
+
+
+Timepoint: 09/22/2023 20:17:13
+r-squared:   0.4784
+
+
+
+Timepoint: 09/22/2023 20:18:04
+Program execution begins...
+
+
+
+Timepoint: 09/22/2023 20:18:05
+[1mThe number of unique mouse IDs in the complete medical study DataFrame is 249.[0m
+
+
+Timepoint: 09/22/2023 20:18:06
+[1mThe updated number of unique mouse IDs in the complete medical study DataFrame is 248.[0m
+
+
+Timepoint: 09/22/2023 20:18:11
+True
+
+
+Timepoint: 09/22/2023 20:18:22
+[1mThe range of data points per mouse is 1-10.[0m
+
+
+Timepoint: 09/22/2023 20:18:24
+[1mThere should be 2,500 data points in this animal study.[0m
+
+
+Timepoint: 09/22/2023 20:18:24
+[1mThere are 1,880 data points in this animal study.[0m
+
+
+Timepoint: 09/22/2023 20:18:24
+[1mThis animal study is missing 620 data points or 24.8% of the expected total.[0m
+
+
+Timepoint: 09/22/2023 20:18:24
+r-value:     0.7669
+
+
+Timepoint: 09/22/2023 20:18:24
+r-squared:   0.5881
+
+
+
+Timepoint: 09/22/2023 20:18:25
+r-value:     0.0081
+
+
+Timepoint: 09/22/2023 20:18:25
+r-squared:   0.0001
+
+
+
+Timepoint: 09/22/2023 20:18:25
+r-value:     -0.0681
+
+
+Timepoint: 09/22/2023 20:18:25
+r-squared:   0.0046
+
+
+
+Timepoint: 09/22/2023 20:18:26
+r-value:     -0.0055
+
+
+Timepoint: 09/22/2023 20:18:26
+r-squared:   0.0000
+
+
+
+Timepoint: 09/22/2023 20:18:26
+r-value:     -0.1309
+
+
+Timepoint: 09/22/2023 20:18:26
+r-squared:   0.0171
+
+
+
+Timepoint: 09/22/2023 20:18:27
+r-value:     -0.1195
+
+
+Timepoint: 09/22/2023 20:18:27
+r-squared:   0.0143
+
+
+
+Timepoint: 09/22/2023 20:18:28
+r-value:     -0.0030
+
+
+Timepoint: 09/22/2023 20:18:28
+r-squared:   0.0000
+
+
+
+Timepoint: 09/22/2023 20:18:28
+r-value:     0.6917
+
+
+Timepoint: 09/22/2023 20:18:28
+r-squared:   0.4784
+
+
+
+Timepoint: 09/22/2023 20:18:29
+r-value:     0.0623
+
+
+Timepoint: 09/22/2023 20:18:29
+r-squared:   0.0039
+
+
+
+Timepoint: 09/22/2023 20:18:29
+r-value:     -0.3136
+
+
+Timepoint: 09/22/2023 20:18:29
+r-squared:   0.0983
+
+
+
+Timepoint: 09/22/2023 20:18:30
+r-value:     0.7669
+
+
+Timepoint: 09/22/2023 20:18:30
+r-squared:   0.5881
+
+
+
+Timepoint: 09/22/2023 20:18:30
+r-value:     0.6917
+
+
+Timepoint: 09/22/2023 20:18:30
+r-squared:   0.4784
+
+
