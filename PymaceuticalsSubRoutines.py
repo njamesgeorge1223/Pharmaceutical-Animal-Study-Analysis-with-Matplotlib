@@ -22,6 +22,7 @@
  #
  #******************************************************************************************/
 
+import PyLogFunctions as log_function
 import PyLogSubRoutines as log_subroutine
 import PyFunctions as function
 
@@ -82,11 +83,19 @@ def DisplayTumorVolumeStatistics \
                   + typeStringParameter \
                   + f' Statistics for {regimen}'
             
-            display \
-                (function \
+            currentStylerObject \
+                = function \
                     .ReturnStylerObjectStandardFormat \
                         (summaryStatisticsDataFrame, 
-                         captionStringVariable))
+                         captionStringVariable)
+            
+            log_function \
+                .ReturnStylerObjectSavePNGImage \
+                    (currentStylerObject,
+                     captionStringVariable)
+            
+            display \
+                (currentStylerObject)
 
     except:
     
