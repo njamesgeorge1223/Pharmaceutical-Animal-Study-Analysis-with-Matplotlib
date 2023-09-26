@@ -1,4 +1,4 @@
-This folder holds the images of tables and plots displayed in the IPython notebook, Pymaceuticals.ipynb: the IPython Notebook generates these images in Image mode (see README.TECHNICAL.md).
+This folder holds the images of tables and plots displayed in the IPython notebook, Pymaceuticals.ipynb: the IPython Notebook generates these images in Image Mode (see README.TECHNICAL.md).
 
 ----
 
