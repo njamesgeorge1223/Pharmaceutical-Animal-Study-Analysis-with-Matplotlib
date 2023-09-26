@@ -60,7 +60,6 @@ To place the IPython notebook in log mode, debug mode, or image mode set the par
 
 ----
 
-
 #### Source code
 
 Pymaceuticals.ipynb, PyConstants.py, PyFunctions.py, PyLogConstants.py, PyLogFunctions.py, PyLogSubRoutines.py, PymaceuticalsFunctions.py, PymaceuticalsSubRoutines.py, PySubroutines.py
@@ -316,17 +315,15 @@ Jupyter Notebook, Python 3.11.4, Pandas, Matplotlib, Numpy
 
 ----
 
-[ETL (Extract, Transform, Load)](https://www.bmc.com/blogs/what-is-etl-extract-transform-load-etl-explained/) \
+[Jupyter Notebook Documentation](https://jupyter-notebook.readthedocs.io/en/stable/) \
+
+[Python Documentation](https://docs.python.org/3/contents.html) \
 
 [Pandas User Guide](https://pandas.pydata.org/docs/user_guide/index.html) \
 
-[PgAdmin Documentation](https://www.postgresql.org/docs/) \
+[Matplotlib Documentation](https://matplotlib.org/stable/index.html) \
 
-[Postgres Documentation](https://www.pgadmin.org/docs/) \
-
-[PostgresSQL Documentation](https://www.postgresql.org/docs/) \
-
-[The Complete Guide to Regular Expressions](https://coderpad.io/blog/development/the-complete-guide-to-regular-expressions-regex/) \
+[Numpy documentation](https://numpy.org/doc/1.26/) \
 
 ----
 
@@ -337,5 +334,3 @@ Jupyter Notebook, Python 3.11.4, Pandas, Matplotlib, Numpy
 ### Copyright
 
 N. James George © 2023. All Rights Reserved.
-
-
