@@ -12,7 +12,7 @@ In addition to those modules, the Jupyter Notebook requires the following to exe
 
 Here are the requisite Terminal commands for the installation of these peripheral modules:
 
-python3 -m pip install holoviewsi
+python3 -m pip install holoviews
 
 python3 -m pip install hvplot
 
