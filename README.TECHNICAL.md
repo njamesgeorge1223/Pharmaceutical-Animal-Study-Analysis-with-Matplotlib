@@ -295,9 +295,9 @@ Jupyter Notebook, Matplotlib, Numpy, Pandas, Python 3.11.4
 
 |&rarr; [./Logs/](./Logs/)
 
-  &emsp; |&rarr; [./Logs/20230922PymaceuticalsDebug.txt](./Logs/20230922PymaceuticalsDebug.txt)
+  &emsp; |&rarr; [./Logs/20231107PymaceuticalsDebug.txt](./Logs/20231107PymaceuticalsDebug.txt)
 
-  &emsp; |&rarr; [./Logs/20230922PymaceuticalsLog.txt](./Logs/20230922PymaceuticalsLog.txt)
+  &emsp; |&rarr; [./Logs/20231107PymaceuticalsLog.txt](./Logs/20231107PymaceuticalsLog.txt)
 
   &emsp; |&rarr; [./Logs/README.md](./Logs/README.md)
 
